@@ -1,0 +1,731 @@
+<?xml version="1.0" ?>
+<robot name="robot_covid" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find turtlebot3_description)/urdf/common_properties.xacro"/>
+  <xacro:include filename="$(find turtlebot3_description)/urdf/turtlebot3_covid.gazebo.xacro"/>
+
+  <link name="base_footprint"/>
+
+  <joint name="base_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link" />
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.137929603837973 0.0590136335071231 1.18232656961966E-16"
+        rpy="0 0 0" />
+      <mass
+        value="166.28099908104" />
+      <inertia
+        ixx="5.95347392774185"
+        ixy="0.498554029899198"
+        ixz="-4.62548065996073E-15"
+        iyy="20.6776816658701"
+        iyz="7.23961147059698E-15"
+        izz="15.5686905306224" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_covid/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.647058823529412 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_covid/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="right_wheel">
+    <inertial>
+      <origin
+        xyz="9.97465998686664E-17 5.55111512312578E-17 -0.0439686563724361"
+        rpy="0 0 0" />
+      <mass
+        value="1.09050964191409" />
+      <inertia
+        ixx="0.00217830063012133"
+        ixy="-1.0842021724855E-19"
+        ixz="1.74778683978009E-19"
+        iyy="0.00217830063012133"
+        iyz="-5.48209080062293E-19"
+        izz="0.00393584244278429" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_covid/meshes/right_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_covid/meshes/right_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="base_right_wheel"
+    type="continuous">
+    <origin
+      xyz="0 -0.206 -0.005"
+      rpy="-1.5708 -0.39309 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="right_wheel" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="1000"
+      velocity="25" />
+    <dynamics
+      damping="1"
+      friction="0.1" />
+    <safety_controller
+      soft_upper="0"
+      soft_lower="0"
+      k_position="0"
+      k_velocity="1" />
+  </joint>
+  <link
+    name="left_wheel">
+    <inertial>
+      <origin
+        xyz="-2.21177243187043E-17 -1.30104260698261E-18 -0.043968656372436"
+        rpy="0 0 0" />
+      <mass
+        value="1.09050964191409" />
+      <inertia
+        ixx="0.00217830063012133"
+        ixy="1.0842021724855E-19"
+        ixz="-1.24666204756699E-19"
+        iyy="0.00217830063012133"
+        iyz="-1.01173183332862E-18"
+        izz="0.00393584244278429" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_covid/meshes/left_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_covid/meshes/left_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="base_left_wheel"
+    type="continuous">
+    <origin
+      xyz="0 0.206 -0.005"
+      rpy="1.5708 0.78591 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="left_wheel" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="1000"
+      velocity="25" />
+    <dynamics
+      damping="1"
+      friction="0.1" />
+    <safety_controller
+      soft_upper="0"
+      soft_lower="0"
+      k_position="0"
+      k_velocity="1" />
+  </joint>
+  <link
+    name="caster_right_front">
+    <inertial>
+      <origin
+        xyz="0.02 -0.0435952948933746 0.0122256778786813"
+        rpy="0 0 0" />
+      <mass
+        value="0.209108488239447" />
+      <inertia
+        ixx="8.99230385963391E-05"
+        ixy="4.14237908190145E-20"
+        ixz="-1.86235618203689E-21"
+        iyy="6.9749466673694E-05"
+        iyz="1.5651957066542E-05"
+        izz="0.000107723425963139" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_covid/meshes/caster_right_front.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.647058823529412 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_covid/meshes/caster_right_front.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="base_caster_right_front"
+    type="fixed">
+    <origin
+      xyz="0.315 -0.195 -0.06"
+      rpy="-1.5708 0 -1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="caster_right_front" />
+    <axis
+      xyz="0 0 0" />
+    <limit
+      effort="1000"
+      velocity="2" />
+    <safety_controller
+      k_velocity="1" />
+  </joint>
+  <link
+    name="caster_wheel_right_front">
+    <inertial>
+      <origin
+        xyz="-8.32667268468867E-16 -2.77555756156289E-16 0.0199927113702625"
+        rpy="0 0 0" />
+      <mass
+        value="0.0848583445642773" />
+      <inertia
+        ixx="2.54578132659603E-05"
+        ixy="0"
+        ixz="2.80381773619529E-21"
+        iyy="2.54578132659603E-05"
+        iyz="-1.42821570062772E-20"
+        izz="3.8170390501898E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_covid/meshes/caster_wheel_right_front.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_covid/meshes/caster_wheel_right_front.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="base_caster_wheel_right_front"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="1.5707963267949 -0.0264097940545818 1.5707963267949" />
+    <parent
+      link="caster_right_front" />
+    <child
+      link="caster_wheel_right_front" />
+    <axis
+      xyz="0 0 0" />
+    <limit
+      effort="1000"
+      velocity="30" />
+    <dynamics
+      damping="1"
+      friction="0.1" />
+    <safety_controller
+      k_velocity="1" />
+  </joint>
+  <link
+    name="caster_left_front">
+    <inertial>
+      <origin
+        xyz="0.0200000000000001 -0.0435952948933746 0.0122256778786813"
+        rpy="0 0 0" />
+      <mass
+        value="0.209108488239447" />
+      <inertia
+        ixx="8.99230385963391E-05"
+        ixy="3.94157181583891E-20"
+        ixz="-1.77949886289063E-21"
+        iyy="6.9749466673694E-05"
+        iyz="1.5651957066542E-05"
+        izz="0.000107723425963139" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_covid/meshes/caster_left_front.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.647058823529412 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_covid/meshes/caster_left_front.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="base_caster_left_front"
+    type="fixed">
+    <origin
+      xyz="0.315 0.235 -0.06"
+      rpy="-1.5708 0 -1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="caster_left_front" />
+    <axis
+      xyz="0 0 0" />
+    <limit
+      effort="1000"
+      velocity="2" />
+    <safety_controller
+      k_velocity="1" />
+  </joint>
+  <link
+    name="caster_wheel_left_front">
+    <inertial>
+      <origin
+        xyz="-8.46545056276682E-16 -2.77555756156289E-16 0.0199927113702625"
+        rpy="0 0 0" />
+      <mass
+        value="0.0848583445642773" />
+      <inertia
+        ixx="2.54578132659603E-05"
+        ixy="0"
+        ixz="2.80381773619529E-21"
+        iyy="2.54578132659603E-05"
+        iyz="-1.42821570062772E-20"
+        izz="3.8170390501898E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_covid/meshes/caster_wheel_left_front.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_covid/meshes/caster_wheel_left_front.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="base_caster_wheel_left_front"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="1.5707963267949 -0.0264097940545818 1.5707963267949" />
+    <parent
+      link="caster_left_front" />
+    <child
+      link="caster_wheel_left_front" />
+    <axis
+      xyz="0 0 0" />
+    <limit
+      effort="1000"
+      velocity="30" />
+    <dynamics
+      damping="1"
+      friction="0.1" />
+    <safety_controller
+      k_velocity="1" />
+  </joint>
+  <link
+    name="caster_right_rear">
+    <inertial>
+      <origin
+        xyz="0 0.0164047051066256 -0.00277432212131862"
+        rpy="0 0 0" />
+      <mass
+        value="0.209108488239446" />
+      <inertia
+        ixx="8.9923038596339E-05"
+        ixy="6.7308884306905E-20"
+        ixz="-1.87411663780413E-21"
+        iyy="6.9749466673694E-05"
+        iyz="1.5651957066542E-05"
+        izz="0.000107723425963139" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_covid/meshes/caster_right_rear.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.647058823529412 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_covid/meshes/caster_right_rear.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="base_caster_right_rear"
+    type="fixed">
+    <origin
+      xyz="-0.32 -0.215 0"
+      rpy="-1.5708 0 -1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="caster_right_rear" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      effort="1000"
+      velocity="2" />
+    <safety_controller
+      k_velocity="1" />
+  </joint>
+  <link
+    name="caster_wheel_right_rear">
+    <inertial>
+      <origin
+        xyz="0 5.55111512312578E-17 -7.28862973753408E-06"
+        rpy="0 0 0" />
+      <mass
+        value="0.0848583445642773" />
+      <inertia
+        ixx="2.54578132659603E-05"
+        ixy="0"
+        ixz="1.81721527075605E-21"
+        iyy="2.54578132659603E-05"
+        iyz="-1.42560772011881E-20"
+        izz="3.8170390501898E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_covid/meshes/caster_wheel_right_rear.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_covid/meshes/caster_wheel_right_rear.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="base_caster_wheel_right_rear"
+    type="fixed">
+    <origin
+      xyz="0 0.0599999999999994 -0.0150000000000003"
+      rpy="1.5707963267949 -0.0264097940545818 1.5707963267949" />
+    <parent
+      link="caster_right_rear" />
+    <child
+      link="caster_wheel_right_rear" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      effort="1000"
+      velocity="30" />
+    <dynamics
+      damping="1"
+      friction="0.1" />
+    <safety_controller
+      k_velocity="1" />
+  </joint>
+  <link
+    name="caster_left_rear">
+    <inertial>
+      <origin
+        xyz="0.02 -0.0435952948933746 0.0122256778786813"
+        rpy="0 0 0" />
+      <mass
+        value="0.209108488239446" />
+      <inertia
+        ixx="8.9923038596339E-05"
+        ixy="6.7308884306905E-20"
+        ixz="-1.87411663780413E-21"
+        iyy="6.9749466673694E-05"
+        iyz="1.5651957066542E-05"
+        izz="0.000107723425963139" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_covid/meshes/caster_left_rear.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.647058823529412 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_covid/meshes/caster_left_rear.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="base_caster_left_rear"
+    type="fixed">
+    <origin
+      xyz="-0.335 0.235 -0.0599999999999996"
+      rpy="-1.5707963267949 0 -1.5707963267949" />
+    <parent
+      link="base_link" />
+    <child
+      link="caster_left_rear" />
+    <axis
+      xyz="0 0 0" />
+    <limit
+      effort="1000"
+      velocity="2" />
+    <safety_controller
+      k_velocity="1" />
+  </joint>
+  <link
+    name="caster_wheel_left_rear">
+    <inertial>
+      <origin
+        xyz="-8.39606162372775E-16 -2.22044604925031E-16 0.0199927113702625"
+        rpy="0 0 0" />
+      <mass
+        value="0.0848583445642773" />
+      <inertia
+        ixx="2.54578132659603E-05"
+        ixy="0"
+        ixz="1.81721527075605E-21"
+        iyy="2.54578132659603E-05"
+        iyz="-1.42560772011881E-20"
+        izz="3.8170390501898E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_covid/meshes/caster_wheel_left_rear.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_covid/meshes/caster_wheel_left_rear.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="base_caster_wheel_left_rear"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="1.5707963267949 -0.0264097940545818 1.5707963267949" />
+    <parent
+      link="caster_left_rear" />
+    <child
+      link="caster_wheel_left_rear" />
+    <axis
+      xyz="0 0 0" />
+    <limit
+      effort="1000"
+      velocity="30" />
+    <dynamics
+      damping="1"
+      friction="0.1" />
+    <safety_controller
+      k_velocity="1" />
+  </joint>
+
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+    <origin xyz="0.0 0 0.068" rpy="0 0 0"/>
+  </joint>
+
+  <link name="imu_link"/>
+
+  <joint name="scan_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="base_scan"/>
+    <origin xyz="-0.47 0 0.93" rpy="0 0 0"/>
+  </joint>
+
+  <link name="base_scan">
+    <visual>
+      <origin xyz="0 0 0.0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://turtlebot3_description/meshes/sensors/lds.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="dark"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0.015 0 -0.0065" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.0315" radius="0.055"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <mass value="0.114" />
+      <origin xyz="0 0 0" />
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0"
+               iyy="0.001" iyz="0.0"
+               izz="0.001" />
+    </inertial>
+  </link>
+
+  <joint name="camera_joint" type="fixed">
+    <origin xyz="0.073 -0.011 0.084" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="camera_link"/>
+  </joint>
+
+  <link name="camera_link">
+    <collision>
+      <origin xyz="0.005 0.011 0.013" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.015 0.030 0.027"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="camera_rgb_joint" type="fixed">
+    <origin xyz="0.003 0.011 0.009" rpy="0 0 0"/>
+    <parent link="camera_link"/>
+    <child link="camera_rgb_frame"/>
+  </joint>
+  <link name="camera_rgb_frame"/>
+
+  <joint name="camera_rgb_optical_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="-1.57 0 -1.57"/>
+    <parent link="camera_rgb_frame"/>
+    <child link="camera_rgb_optical_frame"/>
+  </joint>
+  <link name="camera_rgb_optical_frame"/>
+
+</robot>
