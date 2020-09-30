@@ -33,7 +33,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot_covid/meshes/base_link.STL" />
+          filename="package://turtlebot3_description/meshes/base_link.STL" />
       </geometry>
       <material
         name="">
@@ -47,7 +47,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot_covid/meshes/base_link.STL" />
+          filename="package://turtlebot3_description/meshes/base_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -73,7 +73,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot_covid/meshes/right_wheel.STL" />
+          filename="package://turtlebot3_description/meshes/right_wheel.STL" />
       </geometry>
       <material
         name="">
@@ -87,7 +87,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot_covid/meshes/right_wheel.STL" />
+          filename="package://turtlebot3_description/meshes/right_wheel.STL" />
       </geometry>
     </collision>
   </link>
@@ -139,7 +139,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot_covid/meshes/left_wheel.STL" />
+          filename="package://turtlebot3_description/meshes/left_wheel.STL" />
       </geometry>
       <material
         name="">
@@ -153,7 +153,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot_covid/meshes/left_wheel.STL" />
+          filename="package://turtlebot3_description/meshes/left_wheel.STL" />
       </geometry>
     </collision>
   </link>
@@ -205,7 +205,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot_covid/meshes/caster_right_front.STL" />
+          filename="package://turtlebot3_description/meshes/caster_right_front.STL" />
       </geometry>
       <material
         name="">
@@ -219,7 +219,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot_covid/meshes/caster_right_front.STL" />
+          filename="package://turtlebot3_description/meshes/caster_right_front.STL" />
       </geometry>
     </collision>
   </link>
@@ -263,7 +263,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot_covid/meshes/caster_wheel_right_front.STL" />
+          filename="package://turtlebot3_description/meshes/caster_wheel_right_front.STL" />
       </geometry>
       <material
         name="">
@@ -277,7 +277,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot_covid/meshes/caster_wheel_right_front.STL" />
+          filename="package://turtlebot3_description/meshes/caster_wheel_right_front.STL" />
       </geometry>
     </collision>
   </link>
@@ -324,7 +324,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot_covid/meshes/caster_left_front.STL" />
+          filename="package://turtlebot3_description/meshes/caster_left_front.STL" />
       </geometry>
       <material
         name="">
@@ -338,7 +338,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot_covid/meshes/caster_left_front.STL" />
+          filename="package://turtlebot3_description/meshes/caster_left_front.STL" />
       </geometry>
     </collision>
   </link>
@@ -382,7 +382,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot_covid/meshes/caster_wheel_left_front.STL" />
+          filename="package://turtlebot3_description/meshes/caster_wheel_left_front.STL" />
       </geometry>
       <material
         name="">
@@ -396,7 +396,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot_covid/meshes/caster_wheel_left_front.STL" />
+          filename="package://turtlebot3_description/meshes/caster_wheel_left_front.STL" />
       </geometry>
     </collision>
   </link>
@@ -443,7 +443,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot_covid/meshes/caster_right_rear.STL" />
+          filename="package://turtlebot3_description/meshes/caster_right_rear.STL" />
       </geometry>
       <material
         name="">
@@ -457,7 +457,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot_covid/meshes/caster_right_rear.STL" />
+          filename="package://turtlebot3_description/meshes/caster_right_rear.STL" />
       </geometry>
     </collision>
   </link>
@@ -501,7 +501,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot_covid/meshes/caster_wheel_right_rear.STL" />
+          filename="package://turtlebot3_description/meshes/caster_wheel_right_rear.STL" />
       </geometry>
       <material
         name="">
@@ -515,7 +515,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot_covid/meshes/caster_wheel_right_rear.STL" />
+          filename="package://turtlebot3_description/meshes/caster_wheel_right_rear.STL" />
       </geometry>
     </collision>
   </link>
@@ -562,7 +562,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot_covid/meshes/caster_left_rear.STL" />
+          filename="package://turtlebot3_description/meshes/caster_left_rear.STL" />
       </geometry>
       <material
         name="">
@@ -576,7 +576,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot_covid/meshes/caster_left_rear.STL" />
+          filename="package://turtlebot3_description/meshes/caster_left_rear.STL" />
       </geometry>
     </collision>
   </link>
@@ -620,7 +620,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot_covid/meshes/caster_wheel_left_rear.STL" />
+          filename="package://turtlebot3_description/meshes/caster_wheel_left_rear.STL" />
       </geometry>
       <material
         name="">
@@ -634,7 +634,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot_covid/meshes/caster_wheel_left_rear.STL" />
+          filename="package://turtlebot3_description/meshes/caster_wheel_left_rear.STL" />
       </geometry>
     </collision>
   </link>
@@ -660,6 +660,129 @@
       k_velocity="1" />
   </joint>
 
+  <link
+    name="panel_tower">
+    <inertial>
+      <origin
+        xyz="0.0064322 -0.0025126 0.03"
+        rpy="0 0 0" />
+      <mass
+        value="12.15" />
+      <inertia
+        ixx="0.57318"
+        ixy="4.2001E-17"
+        ixz="5.0155E-20"
+        iyy="0.00729"
+        iyz="7.3794E-18"
+        izz="0.57318" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://turtlebot3_description/meshes/panel_tower.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.68627 0.65882 0.63922 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://turtlebot3_description/meshes/panel_tower.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="base_panel_tower"
+    type="fixed">
+    <origin
+      xyz="-0.42643 0.03 0.37751"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="panel_tower" />
+    <axis
+      xyz="0 0 0" />
+    <limit
+      effort="10000"
+      velocity="0" />
+    <dynamics
+      damping="1000"
+      friction="1000" />
+    <safety_controller
+      k_velocity="1" />
+  </joint>
+  <link
+    name="panel_housing">
+    <inertial>
+      <origin
+        xyz="-0.0089661 0.1507 0.017336"
+        rpy="0 0 0" />
+      <mass
+        value="9.8248" />
+      <inertia
+        ixx="0.10476"
+        ixy="0.00014166"
+        ixz="0.0062239"
+        iyy="0.034911"
+        iyz="0.00014628"
+        izz="0.094801" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://turtlebot3_description/meshes/panel_housing.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.68627 0.65882 0.63922 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://turtlebot3_description/meshes/panel_housing.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="base_panel_housing"
+    type="fixed">
+    <origin
+      xyz="-0.37982 0.14882 0.82388"
+      rpy="3.1416 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="panel_housing" />
+    <axis
+      xyz="0 0 0" />
+    <limit
+      effort="10000"
+      velocity="0" />
+    <dynamics
+      damping="1000"
+      friction="1000" />
+    <safety_controller
+      k_velocity="1" />
+  </joint>
+
   <joint name="imu_joint" type="fixed">
     <parent link="base_link"/>
     <child link="imu_link"/>
@@ -671,7 +794,7 @@
   <joint name="scan_joint" type="fixed">
     <parent link="base_link"/>
     <child link="base_scan"/>
-    <origin xyz="-0.47 0 0.93" rpy="0 0 0"/>
+    <origin xyz="-0.40 0 0.93" rpy="0 0 0"/>
   </joint>
 
   <link name="base_scan">
