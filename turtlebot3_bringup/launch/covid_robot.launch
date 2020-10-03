@@ -1,0 +1,16 @@
+<launch>
+  <arg name="multi_robot_name" default=""/>
+  <arg name="set_lidar_frame_id" default="base_scan"/>
+
+  <include file="$(find turtlebot3_bringup)/launch/turtlebot3_core.launch">
+    <arg name="multi_robot_name" value="$(arg multi_robot_name)"/>
+  </include>
+  <include file="$(find turtlebot3_bringup)/launch/turtlebot3_lidar.launch">
+    <arg name="set_frame_id" value="$(arg set_lidar_frame_id)"/>
+  </include>
+  <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+    <arg name="enable_depth" value="false"/>
+  </include>
+
+  <node pkg="turtlebot3_bringup" type="turtlebot3_diagnostics" name="turtlebot3_diagnostics" output="screen"/>
+</launch>
