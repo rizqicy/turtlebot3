@@ -29,6 +29,7 @@
 
 import rospy
 from geometry_msgs.msg import Twist
+from std_msgs.msg import Bool
 import sys, select, os
 if os.name == 'nt':
   import msvcrt
@@ -134,6 +135,7 @@ if __name__=="__main__":
 
     rospy.init_node('turtlebot3_teleop')
     pub = rospy.Publisher('cmd_vel', Twist, queue_size=10)
+    motor_enable = rospy.Publisher('motor_power', Bool)
 
     turtlebot3_model = rospy.get_param("model", "burger")
 
@@ -142,6 +144,9 @@ if __name__=="__main__":
     target_angular_vel  = 0.0
     control_linear_vel  = 0.0
     control_angular_vel = 0.0
+
+    msgs = Bool()
+    msgs.data = True
 
     try:
         print(msg)
@@ -186,6 +191,7 @@ if __name__=="__main__":
             twist.angular.x = 0.0; twist.angular.y = 0.0; twist.angular.z = control_angular_vel
 
             pub.publish(twist)
+            motor_enable.publish(msgs)
 
     except:
         print(e)
@@ -195,6 +201,9 @@ if __name__=="__main__":
         twist.linear.x = 0.0; twist.linear.y = 0.0; twist.linear.z = 0.0
         twist.angular.x = 0.0; twist.angular.y = 0.0; twist.angular.z = 0.0
         pub.publish(twist)
+
+        msgs.data = False
+        motor_enable.publish(msgs)
 
     if os.name != 'nt':
         termios.tcsetattr(sys.stdin, termios.TCSADRAIN, settings)

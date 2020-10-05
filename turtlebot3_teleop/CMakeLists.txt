@@ -10,6 +10,7 @@ project(turtlebot3_teleop)
 find_package(catkin REQUIRED COMPONENTS
   rospy
   geometry_msgs
+  std_msgs
 )
 
 ################################################################################
@@ -29,7 +30,7 @@ catkin_python_setup()
 # Declare catkin specific configuration to be passed to dependent projects
 ################################################################################
 catkin_package(
-  CATKIN_DEPENDS rospy geometry_msgs
+  CATKIN_DEPENDS rospy geometry_msgs std_msgs
 )
 
 ################################################################################
