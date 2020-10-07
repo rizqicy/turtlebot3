@@ -42,8 +42,8 @@ BURGER_MAX_ANG_VEL = 2.84
 WAFFLE_MAX_LIN_VEL = 0.26
 WAFFLE_MAX_ANG_VEL = 1.82
 
-LIN_VEL_STEP_SIZE = 0.1
-ANG_VEL_STEP_SIZE = 0.1
+LIN_VEL_STEP_SIZE = 0.2
+ANG_VEL_STEP_SIZE = 0.4
 
 COVID_MAX_LIN_VEL = 2.125
 COVID_MAX_ANG_VEL = 8.5
@@ -112,6 +112,8 @@ def checkLinearLimitVelocity(vel):
       vel = constrain(vel, -WAFFLE_MAX_LIN_VEL, WAFFLE_MAX_LIN_VEL)
     elif turtlebot3_model == "covid":
       vel = constrain(vel, -COVID_MAX_LIN_VEL, COVID_MAX_LIN_VEL)
+    elif turtlebot3_model == "test1":
+      vel = constrain(vel, -COVID_MAX_LIN_VEL, COVID_MAX_LIN_VEL)
     else:
       vel = constrain(vel, -BURGER_MAX_LIN_VEL, BURGER_MAX_LIN_VEL)
 
@@ -124,6 +126,8 @@ def checkAngularLimitVelocity(vel):
       vel = constrain(vel, -WAFFLE_MAX_ANG_VEL, WAFFLE_MAX_ANG_VEL)
     elif turtlebot3_model == "covid":
       vel = constrain(vel, -COVID_MAX_ANG_VEL, COVID_MAX_ANG_VEL)
+    elif turtlebot3_model == "test1":
+      vel = constrain(vel, -COVID_MAX_LIN_VEL, COVID_MAX_LIN_VEL)
     else:
       vel = constrain(vel, -BURGER_MAX_ANG_VEL, BURGER_MAX_ANG_VEL)
 
@@ -144,7 +148,7 @@ if __name__=="__main__":
     target_angular_vel  = 0.0
     control_linear_vel  = 0.0
     control_angular_vel = 0.0
-
+    lead=0
     msgs = Bool()
     msgs.data = True
 
@@ -153,9 +157,13 @@ if __name__=="__main__":
         while(1):
             key = getKey()
             if key == 'w' :
-                target_linear_vel = checkLinearLimitVelocity(target_linear_vel + LIN_VEL_STEP_SIZE)
                 status = status + 1
-                print(vels(target_linear_vel,target_angular_vel))
+                if (status==1) and (lead==0):
+                  target_linear_vel = checkLinearLimitVelocity(target_linear_vel + LIN_VEL_STEP_SIZE+0.15)
+                  print(vels(target_linear_vel,target_angular_vel))
+                else:
+                  target_linear_vel = checkLinearLimitVelocity(target_linear_vel + LIN_VEL_STEP_SIZE)
+                  print(vels(target_linear_vel,target_angular_vel))
             elif key == 'x' :
                 target_linear_vel = checkLinearLimitVelocity(target_linear_vel - LIN_VEL_STEP_SIZE)
                 status = status + 1
@@ -181,6 +189,7 @@ if __name__=="__main__":
             if status == 20 :
                 print(msg)
                 status = 0
+		lead=1
 
             twist = Twist()
 
