@@ -9,30 +9,30 @@
   </gazebo>
 
   <gazebo reference="left_wheel">
-    <mu1>100</mu1>
-    <mu2>100</mu2>
+    <mu1>10</mu1>
+    <mu2>10</mu2>
     <kp>500000.0</kp>
     <kd>10.0</kd>
     <minDepth>0.001</minDepth>
-    <maxVel>1</maxVel>
+    <maxVel>2.0</maxVel>
     <fdir1>1 0 0</fdir1>
     <material>Gazebo/FlatBlack</material>
   </gazebo>
 
   <gazebo reference="right_wheel">
-    <mu1>100</mu1>
-    <mu2>100</mu2>
+    <mu1>10</mu1>
+    <mu2>10</mu2>
     <kp>500000.0</kp>
     <kd>10.0</kd>
     <minDepth>0.001</minDepth>
-    <maxVel>1</maxVel>
+    <maxVel>2.0</maxVel>
     <fdir1>1 0 0</fdir1>
     <material>Gazebo/FlatBlack</material>
   </gazebo>
 
   <gazebo reference="caster_wheel_right_front">
-    <mu1>0</mu1>
-    <mu2>0</mu2>
+    <mu1>0.1</mu1>
+    <mu2>0.1</mu2>
     <kp>1000000.0</kp>
     <kd>100.0</kd>
     <minDepth>0.001</minDepth>
@@ -41,8 +41,8 @@
   </gazebo>
 
   <gazebo reference="caster_wheel_right_rear">
-    <mu1>0</mu1>
-    <mu2>0</mu2>
+    <mu1>0.1</mu1>
+    <mu2>0.1</mu2>
     <kp>1000000.0</kp>
     <kd>100.0</kd>
     <minDepth>0.001</minDepth>
@@ -51,8 +51,8 @@
   </gazebo>
 
   <gazebo reference="caster_wheel_left_front">
-    <mu1>0</mu1>
-    <mu2>0</mu2>
+    <mu1>0.1</mu1>
+    <mu2>0.1</mu2>
     <kp>1000000.0</kp>
     <kd>100.0</kd>
     <minDepth>0.001</minDepth>
@@ -61,8 +61,8 @@
   </gazebo>
 
   <gazebo reference="caster_wheel_left_rear">
-    <mu1>0</mu1>
-    <mu2>0</mu2>
+    <mu1>0.1</mu1>
+    <mu2>0.1</mu2>
     <kp>1000000.0</kp>
     <kd>100.0</kd>
     <minDepth>0.001</minDepth>
@@ -91,8 +91,8 @@
       <publishWheelJointState>true</publishWheelJointState>
       <legacyMode>false</legacyMode>
       <updateRate>30</updateRate>
-      <leftJoint>base_left_wheel</leftJoint>
-      <rightJoint>base_right_wheel</rightJoint>
+      <leftJoint>wheel_left_joint</leftJoint>
+      <rightJoint>wheel_right_joint</rightJoint>
       <wheelSeparation>0.5</wheelSeparation>
       <wheelDiameter>0.17</wheelDiameter>
       <wheelAcceleration>200</wheelAcceleration>
