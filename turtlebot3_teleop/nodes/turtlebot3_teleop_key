@@ -45,7 +45,7 @@ WAFFLE_MAX_ANG_VEL = 1.82
 LIN_VEL_STEP_SIZE = 0.2
 ANG_VEL_STEP_SIZE = 0.4
 
-COVID_MAX_LIN_VEL = 2.125
+COVID_MAX_LIN_VEL = 2.25
 COVID_MAX_ANG_VEL = 8.5
 
 msg = """
@@ -151,23 +151,29 @@ if __name__=="__main__":
     lead=0
     msgs = Bool()
     msgs.data = True
-
+    stop=0
     try:
         print(msg)
         while(1):
             key = getKey()
             if key == 'w' :
                 status = status + 1
-                if (status==1) and (lead==0):
-                  target_linear_vel = checkLinearLimitVelocity(target_linear_vel + LIN_VEL_STEP_SIZE+0.15)
+                if (status==1) or (stop==1):
+                  target_linear_vel = checkLinearLimitVelocity(target_linear_vel + LIN_VEL_STEP_SIZE+0.3)
                   print(vels(target_linear_vel,target_angular_vel))
                 else:
                   target_linear_vel = checkLinearLimitVelocity(target_linear_vel + LIN_VEL_STEP_SIZE)
                   print(vels(target_linear_vel,target_angular_vel))
+		stop=0
             elif key == 'x' :
-                target_linear_vel = checkLinearLimitVelocity(target_linear_vel - LIN_VEL_STEP_SIZE)
                 status = status + 1
-                print(vels(target_linear_vel,target_angular_vel))
+		if (stop==1):
+		  target_linear_vel = checkLinearLimitVelocity(target_linear_vel - LIN_VEL_STEP_SIZE-0.3)
+		  print(vels(target_linear_vel,target_angular_vel))
+		else:
+		  target_linear_vel = checkLinearLimitVelocity(target_linear_vel - LIN_VEL_STEP_SIZE)
+		  print(vels(target_linear_vel,target_angular_vel))
+		stop=0
             elif key == 'a' :
                 target_angular_vel = checkAngularLimitVelocity(target_angular_vel + ANG_VEL_STEP_SIZE)
                 status = status + 1
@@ -181,6 +187,7 @@ if __name__=="__main__":
                 control_linear_vel  = 0.0
                 target_angular_vel  = 0.0
                 control_angular_vel = 0.0
+		stop=1
                 print(vels(target_linear_vel, target_angular_vel))
             else:
                 if (key == '\x03'):
