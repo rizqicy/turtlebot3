@@ -148,7 +148,6 @@ if __name__=="__main__":
     target_angular_vel  = 0.0
     control_linear_vel  = 0.0
     control_angular_vel = 0.0
-    lead=0
     msgs = Bool()
     msgs.data = True
     stop=0
@@ -164,7 +163,7 @@ if __name__=="__main__":
                 else:
                   target_linear_vel = checkLinearLimitVelocity(target_linear_vel + LIN_VEL_STEP_SIZE)
                   print(vels(target_linear_vel,target_angular_vel))
-		            stop=0
+                stop=0
             elif key == 'x' :
                 status = status + 1
                 if (stop==1):
@@ -187,7 +186,7 @@ if __name__=="__main__":
                 control_linear_vel  = 0.0
                 target_angular_vel  = 0.0
                 control_angular_vel = 0.0
-		            stop=1
+                stop=1
                 print(vels(target_linear_vel, target_angular_vel))
             else:
                 if (key == '\x03'):
@@ -196,7 +195,6 @@ if __name__=="__main__":
             if status == 20 :
                 print(msg)
                 status = 0
-		lead=1
 
             twist = Twist()
 
