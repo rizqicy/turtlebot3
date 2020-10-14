@@ -6,9 +6,9 @@ lstep: 0.05
 astep: 0.05
 iterations: 5
 lsigma: 0.075
-ogain: 3.0
+ogain: 1.0
 lskip: 0
-minimumScore: 50
+minimumScore: 600
 srr: 0.1
 srt: 0.2
 str: 0.1
