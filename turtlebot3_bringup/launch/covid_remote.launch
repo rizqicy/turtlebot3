@@ -1,5 +1,8 @@
 <launch>
     <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+    <arg name="with_map" default="True"/>
+    <arg name="with_joystick" default="True"/>
+    <arg name="map_file" default="$(find turtlebot3_bringup)/map/map5.yaml"/>
     <param name="model" value="$(arg model)"/>
   
     <include file="$(find turtlebot3_bringup)/launch/includes/description.launch.xml">
@@ -10,9 +13,27 @@
         <param name="publish_frequency" type="double" value="50.0" />
     </node>
 
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find turtlebot3_bringup)/rviz/covid_demo_config.rviz"/>
+    <group if="$(arg with_joystick)">
+        <node pkg="rostopic" type="rostopic" name="motor_enable" args="pub -r 10 /motor_power std_msgs/Bool 'data: true'"/>
+        <include file="$(find teleop_twist_joy)/launch/teleop.launch">
+            <arg name="config_filepath" value="$(find turtlebot3_bringup)/config/joystick.config.yaml" />
+        </include>
+    </group>
 
-    <include file="$(find turtlebot3_teleop)/launch/turtlebot3_teleop_key.launch">
-        <arg name="model" value="$(arg model)" />
-    </include>
+    <group unless="$(arg with_joystick)">
+        <include file="$(find turtlebot3_teleop)/launch/turtlebot3_teleop_key.launch">
+            <arg name="model" value="$(arg model)" />
+        </include>
+    </group>
+
+    <group if="$(arg with_map)">
+        <node name="rviz" pkg="rviz" type="rviz" args="-d $(find turtlebot3_bringup)/rviz/covid_demo_config_with_map.rviz"/>
+        <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
+        <include file="$(find turtlebot3_navigation)/launch/amcl.launch"/>
+    </group>
+
+    <group unless="$(arg with_map)">
+        <node name="rviz" pkg="rviz" type="rviz" args="-d $(find turtlebot3_bringup)/rviz/covid_demo_config.rviz"/>
+    </group>
+
 </launch>
