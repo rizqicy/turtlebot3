@@ -6,9 +6,19 @@
   <arg name="move_forward_only" default="false"/>
 
   <!-- Turtlebot3 -->
-  <include file="$(find turtlebot3_bringup)/launch/turtlebot3_remote.launch">
+  <!-- <include file="$(find turtlebot3_bringup)/launch/turtlebot3_remote.launch">
     <arg name="model" value="$(arg model)" />
+  </include> -->
+
+  <node pkg="rostopic" type="rostopic" name="motor_enable" args="pub -r 10 /motor_power std_msgs/Bool 'data: true'"/>
+
+  <include file="$(find turtlebot3_bringup)/launch/includes/description.launch.xml">
+      <arg name="model" value="$(arg model)" />
   </include>
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+      <param name="publish_frequency" type="double" value="50.0" />
+  </node>
 
   <!-- Map server -->
   <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
@@ -24,7 +34,7 @@
 
   <!-- rviz -->
   <group if="$(arg open_rviz)"> 
-    <node pkg="rviz" type="rviz" name="rviz" required="true"
+    <node pkg="rviz" type="rviz" name="rviz_map" required="true"
           args="-d $(find turtlebot3_navigation)/rviz/turtlebot3_navigation.rviz"/>
   </group>
 </launch>
