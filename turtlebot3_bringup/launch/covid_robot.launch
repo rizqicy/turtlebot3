@@ -9,15 +9,12 @@
     <arg name="set_frame_id" value="$(arg set_lidar_frame_id)"/>
   </include>
   <include file="$(find realsense2_camera)/launch/rs_camera.launch">
-    <arg name="enable_depth" value="false"/>
-    <arg name="depth_width" value="320"/>
-    <arg name="depth_height" value="240"/>
-    <arg name="infra_width" value="320"/>
-    <arg name="infra_height" value="240"/>
-    <arg name="color_width" value="320"/>
-    <arg name="color_height" value="240"/>
-
+    <arg name="align_depth" value="true"/>
+    <arg name="linear_accel_cov" value="1.0"/>
+    <arg name="unite_imu_method" value="linear_interpolation"/>
   </include>
+
+  <node pkg="rostopic" type="rostopic" name="motor_enable" args="pub -r 10 /motor_power std_msgs/Bool 'data: true'"/>
 
   <node pkg="turtlebot3_bringup" type="turtlebot3_diagnostics" name="turtlebot3_diagnostics" output="screen"/>
 </launch>
