@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="device_setting" type="mainsetting.py" name="device_setting" >
+    </node>
+</launch>
