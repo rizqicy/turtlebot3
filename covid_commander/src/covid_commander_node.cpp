@@ -7,7 +7,7 @@
 #include <std_msgs/UInt8.h>
 #include <std_msgs/Bool.h>
 #include <std_srvs/Trigger.h>
-#include <service_robot_msgs/command.h>
+#include <service_robot_msgs/Command.h>
 
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
 geometry_msgs::Pose pose;
@@ -19,9 +19,15 @@ bool payload_done = false;
 bool active = false;
 bool cancelFlag = false;
 
+// Called every time feedback is received for the goal
+void feedbackCb(const move_base_msgs::MoveBaseFeedbackConstPtr& feedback)
+{
+  ROS_INFO("Got Feedback");
+}
 
 // Called once when the goal completes
-void doneCb()
+void doneCb(const actionlib::SimpleClientGoalState& state,
+            const move_base_msgs::MoveBaseResultConstPtr& result)
 {
     ROS_INFO("MoveBase done");
     move_done = true;
@@ -32,9 +38,10 @@ void activeCb()
 {
     ROS_INFO("Goal just went active");
     active = true;
+    ROS_INFO("On going");
 }
 
-void commandCallback(service_robot_msgs::command msg){
+void commandCallback(service_robot_msgs::Command msg){
     pose = msg.coordinate;
     payload_msg = msg.num;
     ROS_INFO("New Command");
@@ -65,9 +72,9 @@ int main(int argc, char** argv){
     //tell the action client that we want to spin a thread by default
     MoveBaseClient ac(n, "move_base", true);
     //wait for the action server to come up
-    while (!ac.waitForServer(ros::Duration(5.0))){
-        ROS_INFO("Waiting for the move_base action server to come up");
-    }
+    // while (!ac.waitForServer(ros::Duration(5.0))){
+    //     ROS_INFO("Waiting for the move_base action server to come up");
+    // }
 
     while (ros::ok()){
         
@@ -84,13 +91,7 @@ int main(int argc, char** argv){
             goal.target_pose.pose = pose;
 
             ROS_INFO("Sending goal");
-            ac.sendGoal(goal);
-            ac.waitForResult();
-            active = true;
-        }
-
-        if (active){
-            ROS_INFO("On going");
+            ac.sendGoal(goal, &doneCb, &activeCb, &feedbackCb);
         }
 
         if (move_done){
