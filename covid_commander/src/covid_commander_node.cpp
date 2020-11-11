@@ -22,7 +22,7 @@ bool cancelFlag = false;
 // Called every time feedback is received for the goal
 void feedbackCb(const move_base_msgs::MoveBaseFeedbackConstPtr& feedback)
 {
-  ROS_INFO("Got Feedback");
+//   do something?
 }
 
 // Called once when the goal completes
@@ -97,11 +97,13 @@ int main(int argc, char** argv){
         if (move_done){
             move_done = false;
             if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED){
+                ROS_INFO("Goal reached, publish payload msgs");
                 payload_pub.publish(payload_msg);
             }else{
                 ROS_WARN("Failed to reach position");
                 status.data = false;
                 status_pub.publish(status);
+                active = false;
             }
         }
 
@@ -110,9 +112,11 @@ int main(int argc, char** argv){
             active = false;
             status.data = true;
             status_pub.publish(status);
+            ROS_INFO("Task complete");
         }
 
         if (cancelFlag){
+            ROS_INFO("Task cancelled");
             active = false;
             cancelFlag = false;
             ac.cancelAllGoals();
