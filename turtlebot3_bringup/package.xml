@@ -26,6 +26,9 @@
   <exec_depend>robot_state_publisher</exec_depend>
   <exec_depend>rosserial_python</exec_depend>
   <exec_depend>hls_lfcd_lds_driver</exec_depend>
+  <exec_depend>realsense2_camera</exec_depend>
+  <exec_depend>depthimage_to_laserscan</exec_depend>
+  <exec_depend>teleop_twist_joy</exec_depend>
   <!-- <exec_depend>realsense_camera</exec_depend> for TurtleBot3 Waffle using Intel RealSense Camera -->
   <!-- <exec_depend>raspicam_node</exec_depend> for TurtleBot3 Waffle Pi using Raspberry Pi Camera -->
 </package>
