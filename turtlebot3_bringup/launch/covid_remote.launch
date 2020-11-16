@@ -27,13 +27,13 @@
     </group>
 
     <group if="$(arg with_map)">
-        <node name="rviz" pkg="rviz" type="rviz" args="-d $(find turtlebot3_bringup)/rviz/covid_demo_config_with_map.rviz"/>
+        <node name="rviz_remote" pkg="rviz" type="rviz" args="-d $(find turtlebot3_bringup)/rviz/covid_demo_config_with_map.rviz"/>
         <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
         <include file="$(find turtlebot3_navigation)/launch/amcl.launch"/>
     </group>
 
     <group unless="$(arg with_map)">
-        <node name="rviz" pkg="rviz" type="rviz" args="-d $(find turtlebot3_bringup)/rviz/covid_demo_config.rviz"/>
+        <node name="rviz_remote" pkg="rviz" type="rviz" args="-d $(find turtlebot3_bringup)/rviz/covid_demo_config.rviz"/>
     </group>
 
 </launch>

@@ -1,0 +1,6 @@
+<launch>
+    <node pkg="rostopic" type="rostopic" name="motor_enable" args="pub -r 10 /motor_power std_msgs/Bool 'data: true'"/>
+    <include file="$(find teleop_twist_joy)/launch/teleop.launch">
+        <arg name="config_filepath" value="$(find turtlebot3_bringup)/config/joystick.config.yaml" />
+    </include>
+</launch>

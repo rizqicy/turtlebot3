@@ -60,6 +60,20 @@ bool cancelCallback(std_srvs::Trigger::Request &req, std_srvs::Trigger::Response
     return true;
 }
 
+uint16_t payload_cmd_gen(std_msgs::UInt8 num, uint8_t flags){
+    if (flags == 0){        //open door
+        return 0b00000000100010;
+    }else if (flags == 1){  //close door
+        return 0b00000000110010;
+    }else if (flags == 2){  //select led on
+
+    }else if (flags == 3){  //all led off
+
+    }else{
+
+    }
+}
+
 int main(int argc, char** argv){
     ros::init(argc, argv, "covid_commander");
     ros::NodeHandle n;
