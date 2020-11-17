@@ -54,7 +54,7 @@ void commandCallback(service_robot_msgs::Command msg){
 
 void payloadCallback(std_msgs::UInt16 msg){
     if (waitPayload){
-        if (((msg.data & 0b0000000011111111) ^ (msg.data >> 8)) == 0b0000000000000000){
+        if ((msg.data & 0b0000000011111111) == (msg.data >> 8)){
             payload_done = true;
             waitPayload = false;
         }
@@ -133,10 +133,12 @@ int main(int argc, char** argv){
 
         if (move_done){
             move_done = false;
+            //buka pintu
             payload_msg = payload_cmd_gen(0, 0);
             payload_pub.publish(payload_msg);
             if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED){
                 ROS_INFO("Goal reached, publish payload msgs");
+                //nyalain lampu
                 payload_msg = payload_cmd_gen(delivery.data, 2);
                 payload_pub.publish(payload_msg);
                 waitPayload = true;
@@ -149,6 +151,7 @@ int main(int argc, char** argv){
         }
 
         if (payload_done){
+            //tutup pintu
             payload_msg = payload_cmd_gen(0, 1);
             payload_pub.publish(payload_msg);
             payload_done = false;
