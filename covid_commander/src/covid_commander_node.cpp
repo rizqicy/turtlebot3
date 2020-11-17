@@ -76,11 +76,7 @@ std_msgs::UInt16 payload_cmd_gen(uint8_t num, uint8_t flags){
     }else if (flags == 1){  //close door
         ret.data = 0b0000000000110010;
     }else if (flags == 2){  //select led on
-        uint16_t msg = 0b0000000000010000;
-        for (uint8_t i=1;i<num;i++){
-            msg << 1;
-        }
-        ret.data = msg || 0b0000000000000001;
+        ret.data = ((0b0000000000010000 << num-1) | 0b0000000000000001);
     }else if (flags == 3){  //all led off
         ret.data = 0b0000000000000001;
     }else{
@@ -151,6 +147,9 @@ int main(int argc, char** argv){
         }
 
         if (payload_done){
+            //matikan semua lampu
+            payload_msg = payload_cmd_gen(0, 3);
+            payload_pub.publish(payload_msg);
             //tutup pintu
             payload_msg = payload_cmd_gen(0, 1);
             payload_pub.publish(payload_msg);
