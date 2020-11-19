@@ -54,7 +54,7 @@ void commandCallback(service_robot_msgs::Command msg){
 
 void payloadCallback(std_msgs::UInt16 msg){
     if (waitPayload){
-        if ((msg.data & 0b0000000011111111) == (msg.data >> 8)){
+        if ((msg.data >> 12) == 0x00){
             payload_done = true;
             waitPayload = false;
         }
