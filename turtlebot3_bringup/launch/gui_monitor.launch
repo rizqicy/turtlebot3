@@ -1,5 +1,5 @@
 <launch>
 
-    <node name="rviz_remote" pkg="rviz" type="rviz" args="-d $(find turtlebot3_bringup)/rviz/covid_demo_config_with_map.rviz"/>
+    <node name="rviz_remote" pkg="rviz" type="rviz" args="-d $(find turtlebot3_bringup)/rviz/gui_monitor.rviz"/>
 
 </launch>
