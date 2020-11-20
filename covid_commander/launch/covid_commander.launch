@@ -23,6 +23,7 @@
     <arg name="model" value="$(arg model)" />
     <arg name="move_forward_only" value="$(arg move_forward_only)"/>
   </include>
+  
   <!-- Covid Commander -->
   <node pkg="covid_commander" type="covid_commander_node" name="covid_commander_node" output="screen"/>
 </launch>
