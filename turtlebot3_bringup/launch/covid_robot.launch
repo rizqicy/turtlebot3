@@ -18,6 +18,13 @@
 
   <node pkg="turtlebot3_bringup" type="turtlebot3_diagnostics" name="turtlebot3_diagnostics" output="screen"/>
 
-  <include file="$(find turtlebot3_bringup)/launch/depth_to_laser.launch">
+  <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan">
+    <param name="scan_height" value="3"/>
+    <param name="output_frame_id" value="camera_depth_frame"/>
+    <param name="range_min" value="0.105"/>
+    <remap from="/image" to="/camera/depth/image_rect_raw"/>
+    <remap from="/camera_info" to="/camera/depth/camera_info"/>
+    <remap from="/scan" to="/scan_depth"/>
+  </node>
 
 </launch>

@@ -27,5 +27,18 @@
   <!-- Covid Commander -->
   <node pkg="covid_commander" type="covid_commander_node" name="covid_commander_node" output="screen"/>
 
-  <include file="$(find turtlebot3_bringup)/launch/laser_merge.launch">
+  <node pkg="ira_laser_tools" name="laserscan_multi_merger" type="laserscan_multi_merger" output="screen">
+    <param name="destination_frame" value="/base_footprint"/>
+    <param name="cloud_destination_topic" value="/merged_cloud"/>
+    <param name="scan_destination_topic" value="/scan"/>
+    <param name="laserscan_topics" value ="/scan_depth /scan_lidar" /> <!-- LIST OF THE LASER SCAN TOPICS TO SUBSCRIBE -->
+
+    <param name="angle_min" value="-3.14159265359"/>
+    <param name="angle_max" value="3.14159265359"/>
+    <param name="angle_increment" value="0.01"/>
+    <param name="scan_time" value="0.033"/>
+    <param name="range_min" value="0.1"/>
+    <param name="range_max" value="10.0"/>
+	</node>
+
 </launch>
