@@ -26,4 +26,6 @@
   
   <!-- Covid Commander -->
   <node pkg="covid_commander" type="covid_commander_node" name="covid_commander_node" output="screen"/>
+
+  <include file="$(find turtlebot3_bringup)/launch/laser_merge.launch">
 </launch>
