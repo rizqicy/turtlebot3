@@ -2,6 +2,10 @@
   <arg name="multi_robot_name" default=""/>
   <arg name="set_lidar_frame_id" default="base_scan"/>
 
+  <include file="$(find turtlebot3_bringup)/launch/includes/description.launch.xml">
+    <arg name="model" value="$(arg model)" />
+  </include>
+
   <include file="$(find turtlebot3_bringup)/launch/turtlebot3_core.launch">
     <arg name="multi_robot_name" value="$(arg multi_robot_name)"/>
   </include>
@@ -13,7 +17,7 @@
   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
     <param name="publish_frequency" type="double" value="50.0" />
   </node>
-  
+
   <include file="$(find realsense2_camera)/launch/rs_camera.launch">
     <arg name="align_depth" value="true"/>
     <arg name="linear_accel_cov" value="1.0"/>

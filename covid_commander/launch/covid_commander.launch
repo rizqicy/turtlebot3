@@ -4,10 +4,6 @@
   <arg name="map_file" default="$(find turtlebot3_bringup)/map/map5.yaml"/>
   <arg name="move_forward_only" default="false"/>
 
-  <include file="$(find turtlebot3_bringup)/launch/includes/description.launch.xml">
-    <arg name="model" value="$(arg model)" />
-  </include>
-
   <!-- Map server -->
   <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
 
