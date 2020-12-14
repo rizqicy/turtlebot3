@@ -57,14 +57,14 @@ void commandCallback(service_robot_msgs::Command msg){
 
 void payloadCallback(std_msgs::UInt16 msg){
     if (waitOpen){
-        if ((msg.data & 0b0000111100000000) != 0b0000111100000000){
+        if ((msg.data & 0b0000111100000000) != 0x00){
             payload_open = true;
             waitOpen = false;
         }
     }
 
     if (waitClose){
-        if ((msg.data & 0b0000111100000000) == 0b0000111100000000){
+        if ((msg.data & 0b0000111100000000) == 0x00){
             payload_done = true;
             waitClose = false;
         }
@@ -131,7 +131,12 @@ int main(int argc, char** argv){
             ROS_INFO("Execute command");
 
             while (!payload_ready){
-                ROS_WARN("Payload not ready");    
+                ROS_WARN("Payload not ready");
+                //tutup pintu
+                payload_msg = payload_cmd_gen(0, 1);
+                payload_pub.publish(payload_msg);
+                ros::spinOnce();
+                r.sleep();   
             }
 
             move_base_msgs::MoveBaseGoal goal;
@@ -155,6 +160,7 @@ int main(int argc, char** argv){
                 ROS_INFO("Goal reached, publish payload msgs");
                 //buka pintu
                 payload_msg = payload_cmd_gen(0, 0);
+                payload_pub.publish(payload_msg);
                 //nyalain lampu
                 payload_msg = payload_cmd_gen(delivery.data, 2);
                 payload_pub.publish(payload_msg);
@@ -168,7 +174,9 @@ int main(int argc, char** argv){
         }
 
         if (payload_open){
+            payload_open = false;
             waitClose = true;
+            ROS_INFO("Door open");
         }
 
         if (payload_done){
