@@ -9,7 +9,7 @@
   <joint name="base_joint" type="fixed">
     <parent link="base_footprint"/>
     <child link="base_link" />
-    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <origin xyz="0 0 0" rpy="0 0 3.14"/>
   </joint>
 
   <link
@@ -53,7 +53,7 @@
     </collision>
   </link>
   <link
-    name="right_wheel">
+    name="left_wheel">
     <inertial>
       <origin
         xyz="9.97465998686664E-17 5.55111512312578E-17 -0.0439686563724361"
@@ -93,7 +93,7 @@
     </collision>
   </link>
   <joint
-    name="wheel_right_joint"
+    name="wheel_left_joint"
     type="continuous">
     <origin
       xyz="0 -0.206 -0.005"
@@ -101,7 +101,7 @@
     <parent
       link="base_link" />
     <child
-      link="right_wheel" />
+      link="left_wheel" />
     <axis
       xyz="0 0 1" />
     <limit
@@ -119,7 +119,7 @@
       k_velocity="1" />
   </joint>
   <link
-    name="left_wheel">
+    name="right_wheel">
     <inertial>
       <origin
         xyz="-2.21177243187043E-17 -1.30104260698261E-18 -0.043968656372436"
@@ -159,7 +159,7 @@
     </collision>
   </link>
   <joint
-    name="wheel_left_joint"
+    name="wheel_right_joint"
     type="continuous">
     <origin
       xyz="0 0.206 -0.005"
@@ -167,7 +167,7 @@
     <parent
       link="base_link" />
     <child
-      link="left_wheel" />
+      link="right_wheel" />
     <axis
       xyz="0 0 -1" />
     <limit
@@ -795,7 +795,7 @@
   <joint name="scan_joint" type="fixed">
     <parent link="base_link"/>
     <child link="base_scan"/>
-    <origin xyz="-0.35 0 0.93" rpy="0 0 3.14"/>
+    <origin xyz="-0.35 0 0.93" rpy="0 0 0"/>
   </joint>
 
   <link name="base_scan">
@@ -824,7 +824,7 @@
   </link>
 
   <sensor_d435 parent="base_link">
-    <origin xyz="-0.32 0 0.83" rpy="0 0 0"/>
+    <origin xyz="-0.38 0 0.83" rpy="0 0 3.14"/>
   </sensor_d435>
 
   <!-- <joint name="camera_joint" type="fixed">
