@@ -19,9 +19,12 @@ std_msgs::Bool status;
 bool newMsg = false;
 bool move_done = false;
 bool payload_done = false;
+bool payload_open = false;
 bool active = false;
 bool cancelFlag = false;
-bool waitPayload = false;
+bool waitOpen = false;
+bool waitClose = false;
+bool payload_ready = false;
 
 // Called every time feedback is received for the goal
 void feedbackCb(const move_base_msgs::MoveBaseFeedbackConstPtr& feedback)
@@ -53,12 +56,26 @@ void commandCallback(service_robot_msgs::Command msg){
 }
 
 void payloadCallback(std_msgs::UInt16 msg){
-    if (waitPayload){
-        if ((msg.data >> 12) == 0x00){
-            payload_done = true;
-            waitPayload = false;
+    if (waitOpen){
+        if ((msg.data & 0b0000111100000000) != 0b0000111100000000){
+            payload_open = true;
+            waitOpen = false;
         }
     }
+
+    if (waitClose){
+        if ((msg.data & 0b0000111100000000) == 0b0000111100000000){
+            payload_done = true;
+            waitClose = false;
+        }
+    }
+
+    if ((msg.data >> 12) == 0x00){
+        payload_ready = true;
+    }else{
+        payload_ready = false;
+    }
+
 }
 
 bool cancelCallback(std_srvs::Trigger::Request &req, std_srvs::Trigger::Response &res){
@@ -113,6 +130,10 @@ int main(int argc, char** argv){
             newMsg = false;
             ROS_INFO("Execute command");
 
+            while (!payload_ready){
+                ROS_WARN("Payload not ready");    
+            }
+
             move_base_msgs::MoveBaseGoal goal;
 
             goal.target_pose.header.frame_id = "map";
@@ -129,21 +150,25 @@ int main(int argc, char** argv){
 
         if (move_done){
             move_done = false;
-            //buka pintu
-            payload_msg = payload_cmd_gen(0, 0);
             payload_pub.publish(payload_msg);
             if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED){
                 ROS_INFO("Goal reached, publish payload msgs");
+                //buka pintu
+                payload_msg = payload_cmd_gen(0, 0);
                 //nyalain lampu
                 payload_msg = payload_cmd_gen(delivery.data, 2);
                 payload_pub.publish(payload_msg);
-                waitPayload = true;
+                waitOpen = true;
             }else{
                 ROS_WARN("Failed to reach position");
                 status.data = false;
                 status_pub.publish(status);
                 active = false;
             }
+        }
+
+        if (payload_open){
+            waitClose = true;
         }
 
         if (payload_done){
