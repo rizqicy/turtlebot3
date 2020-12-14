@@ -178,7 +178,7 @@ int main(int argc, char** argv){
             waitClose = true;
             ROS_INFO("Door open");
         }
-
+ 
         if (payload_done){
             //matikan semua lampu
             payload_msg = payload_cmd_gen(0, 3);
