@@ -1,14 +1,21 @@
+#!/usr/bin/env python
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication
 import sys
-import setting
+from setting import Ui_MainWindow
 import os
+
+"""
+Created on Mon Feb 17 19:59:51 2020
+
+@author: faris
+"""
 #membuat pewarisan pada Python, dalam kasus ini class Main mewarisi class MainView
 #langkah ini dilakukan agar kita dapat melakukan modifikasi pada class MainView tanpa harus mengubah pada class tersebut
 #cukup melakukan modifikasi pada class Main
-class Main(QtWidgets.QMainWindow, setting.Ui_MainWindow):
+class Main(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
-        super().__init__()
+        super(Main,self).__init__()
         #setupUi merupakan fungsi dari class MainView yang berfungsi untuk melakukan setup
         #sesuai dengan apa yang telah didefinisikan sebelumnya
         self.setupUi(self)
